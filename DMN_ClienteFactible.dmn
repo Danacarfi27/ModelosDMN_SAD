@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_34590D15-4465-4943-A8DA-4C97F196F3B4" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_D1D824F2-A0DB-43D1-B423-9955555C9C5E" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_34590D15-4465-4943-A8DA-4C97F196F3B4">
+  <dmn:extensionElements/>
+  <dmn:inputData id="_91B70AD3-702C-4B86-989F-95B5D7833DBA" name="EdadCliente">
+    <dmn:description>Este input representa la edad en años del cliente que se desea evaluar.</dmn:description>
+    <dmn:extensionElements/>
+    <dmn:variable id="_87C6D632-02A5-44A1-8264-B73B182D61CB" name="EdadCliente" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_7F1CED08-2783-4AC4-9625-5BF4B9AA9860" name="AniosExperiencia">
+    <dmn:description>Este input representa la experiencia en años que tiene el cliente manejando autos</dmn:description>
+    <dmn:extensionElements/>
+    <dmn:variable id="_178F2686-30E9-4CC8-A848-C1C5CE8A8944" name="AniosExperiencia" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_5DBAA900-B688-424C-9240-C061F698E931" name="Afiliado">
+    <dmn:description>Este input representa si el cliente evaluado es miembro de la tarjeta de fidelización o no. 
+True: El cliente es miembro de la tarjeta de fidelización
+False:  El cliente NO es miembro de la tarjeta de fidelización
+</dmn:description>
+    <dmn:extensionElements/>
+    <dmn:variable id="_618085D7-9F58-49FA-B743-AEDE5999E0D6" name="Afiliado" typeRef="boolean"/>
+  </dmn:inputData>
+  <dmn:decision id="_50422FA6-EE3B-4DE1-A651-E47FD860FB86" name="El cliente es factible de alquiler de coche">
+    <dmn:extensionElements/>
+    <dmn:variable id="_DF3CE35F-47AF-4349-A938-1082D5ABEC78" name="El cliente es factible de alquiler de coche" typeRef="boolean"/>
+    <dmn:informationRequirement id="_F680B9A6-7244-4EBF-B207-0E1DE7FFC25F">
+      <dmn:requiredInput href="#_91B70AD3-702C-4B86-989F-95B5D7833DBA"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_729743E8-B26A-4C98-B453-E73F582BD46B">
+      <dmn:requiredInput href="#_7F1CED08-2783-4AC4-9625-5BF4B9AA9860"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_7C722648-1574-4A77-8856-29C53A78F7F9">
+      <dmn:requiredInput href="#_5DBAA900-B688-424C-9240-C061F698E931"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_ED7D61D3-601B-4580-86AD-494FAECFDCC9">
+      <dmn:text>if EdadCliente &lt; 18 then false
+else 
+    if EdadCliente &gt;= 23 then true 
+    else
+    if AniosExperiencia &gt;= 5 then true
+    else 
+    if AniosExperiencia &gt;= 2 and Afiliado=true then true
+    else false</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_05F4416D-6903-4927-9E93-E2F9D58D9C7A" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_ED7D61D3-601B-4580-86AD-494FAECFDCC9">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_91B70AD3-702C-4B86-989F-95B5D7833DBA" dmnElementRef="_91B70AD3-702C-4B86-989F-95B5D7833DBA" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="370" y="356" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_7F1CED08-2783-4AC4-9625-5BF4B9AA9860" dmnElementRef="_7F1CED08-2783-4AC4-9625-5BF4B9AA9860" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="524" y="361" width="132" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_5DBAA900-B688-424C-9240-C061F698E931" dmnElementRef="_5DBAA900-B688-424C-9240-C061F698E931" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="700" y="356" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_50422FA6-EE3B-4DE1-A651-E47FD860FB86" dmnElementRef="_50422FA6-EE3B-4DE1-A651-E47FD860FB86" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="488.9383991377608" y="249" width="225" height="56"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_F680B9A6-7244-4EBF-B207-0E1DE7FFC25F" dmnElementRef="_F680B9A6-7244-4EBF-B207-0E1DE7FFC25F">
+        <di:waypoint x="420" y="381"/>
+        <di:waypoint x="601.4383991377608" y="305"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_729743E8-B26A-4C98-B453-E73F582BD46B" dmnElementRef="_729743E8-B26A-4C98-B453-E73F582BD46B">
+        <di:waypoint x="590" y="386"/>
+        <di:waypoint x="601.4383991377608" y="305"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_7C722648-1574-4A77-8856-29C53A78F7F9" dmnElementRef="_7C722648-1574-4A77-8856-29C53A78F7F9">
+        <di:waypoint x="750" y="381"/>
+        <di:waypoint x="601.4383991377608" y="305"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>

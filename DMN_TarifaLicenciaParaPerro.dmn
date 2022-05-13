@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dmn:definitions xmlns:dmn="http://www.omg.org/spec/DMN/20180521/MODEL/" xmlns="https://kiegroup.org/dmn/_F3D2C437-1310-4183-90D2-E0B006E41DAC" xmlns:feel="http://www.omg.org/spec/DMN/20180521/FEEL/" xmlns:kie="http://www.drools.org/kie/dmn/1.2" xmlns:dmndi="http://www.omg.org/spec/DMN/20180521/DMNDI/" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" id="_5D801CD5-FA1B-41A6-9E0E-8362139385B2" name="Untitled" typeLanguage="http://www.omg.org/spec/DMN/20180521/FEEL/" namespace="https://kiegroup.org/dmn/_F3D2C437-1310-4183-90D2-E0B006E41DAC">
+  <dmn:extensionElements/>
+  <dmn:inputData id="_E67257A1-52D7-4CBB-8DB9-9108393403BC" name="PerroVicioso">
+    <dmn:extensionElements/>
+    <dmn:variable id="_3548F5AB-24AE-49B6-B98A-C54C8B7B7BF9" name="PerroVicioso" typeRef="boolean"/>
+  </dmn:inputData>
+  <dmn:inputData id="_D1BA626F-7864-4BF1-965A-B66E3F21760A" name="EdadPerro">
+    <dmn:extensionElements/>
+    <dmn:variable id="_9575254E-4C59-4DE8-BB24-FB135F39E41D" name="EdadPerro" typeRef="number"/>
+  </dmn:inputData>
+  <dmn:inputData id="_A4E925A0-F98D-439D-950C-51A62B320A91" name="PerroEsterilizado">
+    <dmn:extensionElements/>
+    <dmn:variable id="_0FF1F768-F060-4B84-9184-845BA8C53168" name="PerroEsterilizado" typeRef="boolean"/>
+  </dmn:inputData>
+  <dmn:decision id="_8301F4F7-DE03-48BC-B99E-250AF99CBC14" name="Calcular tarifa perro vicioso">
+    <dmn:extensionElements/>
+    <dmn:variable id="_764BF18F-3035-4C75-AFF6-19FA2818BB6A" name="Calcular tarifa perro vicioso" typeRef="number"/>
+    <dmn:informationRequirement id="_D78E87B1-6DF1-45FF-BFEC-58EAAE49CD3D">
+      <dmn:requiredInput href="#_E67257A1-52D7-4CBB-8DB9-9108393403BC"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_6337D9E8-BEAC-49BD-9AAD-444DDD119A16">
+      <dmn:text>if PerroVicioso = true then 100 
+else 0</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmn:decision id="_5D487B95-1627-4A5D-902C-D51F70B0B5E9" name="Calcular tarifa segun edad y estado esterilización">
+    <dmn:extensionElements/>
+    <dmn:variable id="_0349FEB8-3157-4125-B78B-E59A5249C5DC" name="Calcular tarifa segun edad y estado esterilización" typeRef="number"/>
+    <dmn:informationRequirement id="_A439A84A-DD3F-474D-8264-000709796F5A">
+      <dmn:requiredInput href="#_D1BA626F-7864-4BF1-965A-B66E3F21760A"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_D10BD25A-8E81-446E-8B53-37256E437ADC">
+      <dmn:requiredInput href="#_A4E925A0-F98D-439D-950C-51A62B320A91"/>
+    </dmn:informationRequirement>
+    <dmn:decisionTable id="_E223113E-D673-422E-AFA2-492E8C79AFD7" hitPolicy="UNIQUE" preferredOrientation="Rule-as-Row">
+      <dmn:input id="_8B35D266-D885-448E-A6BA-B15A98D179FD">
+        <dmn:inputExpression id="_51247A26-9045-4DE9-8F3D-40E5939E33CF" typeRef="number">
+          <dmn:text>EdadPerro</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:input id="_31D4E347-9410-414B-95DD-B25CBBFD1260">
+        <dmn:inputExpression id="_6FCAB352-2559-4530-BF0A-19B9CC8ED509" typeRef="boolean">
+          <dmn:text>PerroEsterilizado</dmn:text>
+        </dmn:inputExpression>
+      </dmn:input>
+      <dmn:output id="_45223604-A26B-47EF-85E1-58066BD60DA7"/>
+      <dmn:annotation name="annotation-1"/>
+      <dmn:rule id="_F74C3AFB-D8A4-440D-B232-E468C93D91C1">
+        <dmn:inputEntry id="_39B997D9-1D5B-456E-AA73-EAE761B75062">
+          <dmn:text>&gt;=6</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_A329CD00-F5F3-42A7-96C9-53046DC0075D">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_4213EDE9-EA57-4790-9FBA-ADD5C10E4D21">
+          <dmn:text>20</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_6C8C6D20-F645-4E15-AD48-EDAD388768E4">
+        <dmn:inputEntry id="_5AD406B7-5907-4E90-8A6D-5B1690F58F27">
+          <dmn:text>&gt;=6</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_3549FAEC-FA6D-4910-B55B-BE297E8C042B">
+          <dmn:text>false</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_85437E2B-4793-41F6-8303-F486D1A4B79C">
+          <dmn:text>40</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_116C15AA-F376-49D0-A15C-7B95205A164F">
+        <dmn:inputEntry id="_F69F375B-35B9-4B8B-A9FD-DC9CE98AF15E">
+          <dmn:text>&lt; 6</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_36BB25DB-4F56-4A74-A890-8EDF67BBB8AD">
+          <dmn:text>true</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_9D27C341-2F1F-487A-9463-50751BF82E32">
+          <dmn:text>20</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+      <dmn:rule id="_1FB6DC40-6B69-4E65-8AA9-22B707F1C978">
+        <dmn:inputEntry id="_38CF6DDE-55FA-4A1A-9D23-285E8E9FE517">
+          <dmn:text>&lt; 6</dmn:text>
+        </dmn:inputEntry>
+        <dmn:inputEntry id="_587F7DED-D521-468A-939D-7C0ED3637DF2">
+          <dmn:text>false</dmn:text>
+        </dmn:inputEntry>
+        <dmn:outputEntry id="_AB14C8E2-FDFF-4F1B-963B-E3A37AEB8B9E">
+          <dmn:text>20</dmn:text>
+        </dmn:outputEntry>
+        <dmn:annotationEntry>
+          <dmn:text/>
+        </dmn:annotationEntry>
+      </dmn:rule>
+    </dmn:decisionTable>
+  </dmn:decision>
+  <dmn:decision id="_59156BBB-7C84-484C-A940-2C9C44C0DA94" name="Calcular el precio total de la tarifa de las licencias de perros">
+    <dmn:extensionElements/>
+    <dmn:variable id="_84CB3B24-4B68-46FF-8EC7-21B7D2D2C936" name="Calcular el precio total de la tarifa de las licencias de perros" typeRef="number"/>
+    <dmn:informationRequirement id="_2C763CE1-60C7-4C04-99D6-6CD7750562A1">
+      <dmn:requiredDecision href="#_8301F4F7-DE03-48BC-B99E-250AF99CBC14"/>
+    </dmn:informationRequirement>
+    <dmn:informationRequirement id="_CE5D399A-CF57-4DEA-BA71-E17206D8616B">
+      <dmn:requiredDecision href="#_5D487B95-1627-4A5D-902C-D51F70B0B5E9"/>
+    </dmn:informationRequirement>
+    <dmn:literalExpression id="_73C9469C-2CAB-4407-95BA-E675396C5490">
+      <dmn:text>Calcular tarifa perro vicioso+ Calcular tarifa segun edad y estado esterilización</dmn:text>
+    </dmn:literalExpression>
+  </dmn:decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram id="_9417DB65-0C00-4E28-977F-09C6E39B8EDE" name="DRG">
+      <di:extension>
+        <kie:ComponentsWidthsExtension>
+          <kie:ComponentWidths dmnElementRef="_6337D9E8-BEAC-49BD-9AAD-444DDD119A16">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_E223113E-D673-422E-AFA2-492E8C79AFD7">
+            <kie:width>50</kie:width>
+            <kie:width>150</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+            <kie:width>100</kie:width>
+          </kie:ComponentWidths>
+          <kie:ComponentWidths dmnElementRef="_73C9469C-2CAB-4407-95BA-E675396C5490">
+            <kie:width>300</kie:width>
+          </kie:ComponentWidths>
+        </kie:ComponentsWidthsExtension>
+      </di:extension>
+      <dmndi:DMNShape id="dmnshape-drg-_E67257A1-52D7-4CBB-8DB9-9108393403BC" dmnElementRef="_E67257A1-52D7-4CBB-8DB9-9108393403BC" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="415" y="357" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_D1BA626F-7864-4BF1-965A-B66E3F21760A" dmnElementRef="_D1BA626F-7864-4BF1-965A-B66E3F21760A" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="632" y="357" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_A4E925A0-F98D-439D-950C-51A62B320A91" dmnElementRef="_A4E925A0-F98D-439D-950C-51A62B320A91" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="800" y="357" width="126" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_8301F4F7-DE03-48BC-B99E-250AF99CBC14" dmnElementRef="_8301F4F7-DE03-48BC-B99E-250AF99CBC14" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="416" y="255" width="100" height="50"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_5D487B95-1627-4A5D-902C-D51F70B0B5E9" dmnElementRef="_5D487B95-1627-4A5D-902C-D51F70B0B5E9" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="680.5" y="248" width="171" height="64"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="dmnshape-drg-_59156BBB-7C84-484C-A940-2C9C44C0DA94" dmnElementRef="_59156BBB-7C84-484C-A940-2C9C44C0DA94" isCollapsed="false">
+        <dmndi:DMNStyle>
+          <dmndi:FillColor red="255" green="255" blue="255"/>
+          <dmndi:StrokeColor red="0" green="0" blue="0"/>
+          <dmndi:FontColor red="0" green="0" blue="0"/>
+        </dmndi:DMNStyle>
+        <dc:Bounds x="489" y="146" width="209" height="51"/>
+        <dmndi:DMNLabel/>
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="dmnedge-drg-_D78E87B1-6DF1-45FF-BFEC-58EAAE49CD3D" dmnElementRef="_D78E87B1-6DF1-45FF-BFEC-58EAAE49CD3D">
+        <di:waypoint x="465" y="382"/>
+        <di:waypoint x="466" y="305"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_A439A84A-DD3F-474D-8264-000709796F5A" dmnElementRef="_A439A84A-DD3F-474D-8264-000709796F5A">
+        <di:waypoint x="682" y="382"/>
+        <di:waypoint x="766" y="312"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_D10BD25A-8E81-446E-8B53-37256E437ADC" dmnElementRef="_D10BD25A-8E81-446E-8B53-37256E437ADC">
+        <di:waypoint x="863" y="382"/>
+        <di:waypoint x="766" y="312"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_2C763CE1-60C7-4C04-99D6-6CD7750562A1" dmnElementRef="_2C763CE1-60C7-4C04-99D6-6CD7750562A1">
+        <di:waypoint x="466" y="280"/>
+        <di:waypoint x="593.5" y="197"/>
+      </dmndi:DMNEdge>
+      <dmndi:DMNEdge id="dmnedge-drg-_CE5D399A-CF57-4DEA-BA71-E17206D8616B" dmnElementRef="_CE5D399A-CF57-4DEA-BA71-E17206D8616B">
+        <di:waypoint x="766" y="280"/>
+        <di:waypoint x="593.5" y="197"/>
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</dmn:definitions>
